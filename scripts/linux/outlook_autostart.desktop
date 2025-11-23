@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Outlook Startup Email
+Comment=Open Outlook Web and send a startup email
+# Mettez ici le chemin r?el vers autostart.sh
+Exec=/bin/bash -c '/bin/bash "/path/vers/votre/dossier/autostart.sh"'
+X-GNOME-Autostart-enabled=true

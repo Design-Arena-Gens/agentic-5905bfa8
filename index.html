@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ouvrir Outlook au d?marrage et envoyer un email</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Ouvrir Outlook ? chaque d?marrage de l'ordinateur et envoyer un email</h1>
+        <p class="subtitle">Choisissez votre syst?me et suivez les ?tapes rapides.</p>
+      </header>
+
+      <section class="card">
+        <h2>Windows</h2>
+        <ol>
+          <li>T?l?chargez les scripts:
+            <ul>
+              <li><a href="/scripts/windows/startup_outlook.ps1" download>startup_outlook.ps1</a></li>
+              <li><a href="/scripts/windows/setup_windows.ps1" download>setup_windows.ps1</a></li>
+            </ul>
+          </li>
+          <li>Ouvrez <code>startup_outlook.ps1</code> et remplacez l'adresse email par la v?tre.</li>
+          <li>Cliquez-droit sur <code>setup_windows.ps1</code> ? ? Ex?cuter avec PowerShell ? (ou ex?cutez depuis PowerShell en mode administrateur). Cela cr?era une t?che planifi?e ? OpenOutlookAndEmailOnLogin ? qui s'ex?cute ? la connexion.</li>
+          <li>Red?marrez votre session pour tester.</li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>macOS</h2>
+        <ol>
+          <li>T?l?chargez:
+            <ul>
+              <li><a href="/scripts/macos/outlook_start.applescript" download>outlook_start.applescript</a></li>
+              <li><a href="/scripts/macos/com.user.outlookstartup.plist" download>com.user.outlookstartup.plist</a></li>
+            </ul>
+          </li>
+          <li>?ditez <code>outlook_start.applescript</code> et mettez votre adresse email.</li>
+          <li>Copiez <code>outlook_start.applescript</code> vers par ex. <code>~/Scripts/outlook_start.applescript</code> (cr?ez le dossier si besoin).</li>
+          <li>?ditez le chemin dans le fichier <code>com.user.outlookstartup.plist</code> (cl? <code>ProgramArguments</code>) pour pointer vers votre script.</li>
+          <li>Copiez le <code>.plist</code> dans <code>~/Library/LaunchAgents/</code>, puis ex?cutez: <code>launchctl load ~/Library/LaunchAgents/com.user.outlookstartup.plist</code>.</li>
+        </ol>
+      </section>
+
+      <section class="card">
+        <h2>Linux</h2>
+        <ol>
+          <li>T?l?chargez:
+            <ul>
+              <li><a href="/scripts/linux/autostart.sh" download>autostart.sh</a></li>
+              <li><a href="/scripts/linux/send_email.py" download>send_email.py</a></li>
+              <li><a href="/scripts/linux/outlook_autostart.desktop" download>outlook_autostart.desktop</a></li>
+            </ul>
+          </li>
+          <li>?ditez <code>send_email.py</code> pour d?finir l'exp?diteur (ou utilisez les variables d'environnement indiqu?es en ent?te du fichier).</li>
+          <li>Placez les fichiers dans un dossier, par ex. <code>~/.local/bin/outlook-autostart/</code>, rendez <code>autostart.sh</code> ex?cutable: <code>chmod +x autostart.sh</code>.</li>
+          <li>?ditez <code>outlook_autostart.desktop</code> pour que la ligne <code>Exec=</code> pointe vers votre <code>autostart.sh</code>.</li>
+          <li>Copiez <code>outlook_autostart.desktop</code> dans <code>~/.config/autostart/</code>. D?connectez/reconnectez pour tester.</li>
+        </ol>
+      </section>
+
+      <footer>
+        <p>Remarque: l'envoi d'email utilise votre Outlook (Windows/macOS) ou SMTP (Linux). Aucune donn?e ne quitte votre machine autrement.</p>
+      </footer>
+    </main>
+  </body>
+</html>
